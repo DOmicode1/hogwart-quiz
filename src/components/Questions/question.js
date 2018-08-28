@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../Header/styles';
+import quizQuestion from 'quizQuestion';
 
 function Question(props)
  {
