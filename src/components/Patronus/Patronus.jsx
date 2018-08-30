@@ -18,7 +18,7 @@ class Patronus extends React.Component {
 
     this.zwierze = Patronusy[losowa][1];
     this.setState({ text: `Twój Patronus to ${Patronusy[losowa][0]}` });
-    // this.klik = null;
+    this.klik = null;
   };
   klik = this.losuj;
   render() {
