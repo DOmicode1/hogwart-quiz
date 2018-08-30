@@ -6,7 +6,7 @@ class App extends PureComponent {
     return (
       <Fragment>
         <Header text="Hello World!" color="primary" />
-        <img src="sample_img.jpg" />
+        {/* <img src="sample_img.jpg" /> */}
       </Fragment>
     );
   }
