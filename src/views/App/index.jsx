@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
+import update from 'react-addons-update'; // ES6
 import Header from 'components/Header';
 import styled from 'styled-components';
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -94,7 +95,7 @@ class App extends PureComponent {
     if (this.state.questionId < quizQuestions.length) {
       setTimeout(() => this.setNextQuestion(), 300);
     } else {
-      // do nothing for now
+
     }
   }
 
@@ -110,13 +111,14 @@ class App extends PureComponent {
 
     //     </AppWrapper>
     //   </Fragment>;
-    return <div className="App">
-        <div className="App-header">
+    return <Fragment>
+      <AppWrapper>
 
-          <h2>React Quiz</h2>
-        </div>
+        <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
+
         <Quiz answer={this.state.answer} answerOptions={this.state.answerOptions} questionId={this.state.questionId} question={this.state.question} questionTotal={quizQuestions.length} onAnswerSelected={this.handleAnswerSelected} />
-      </div>;
+      </AppWrapper>
+    </Fragment>;
   }
 }
 
