@@ -1,11 +1,33 @@
 import React, { PureComponent, Fragment } from 'react';
 import Header from 'components/Header';
+import styled from 'styled-components';
+
+
+const AppWrapper = styled.div`
+  background-color: var(--brown);
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
+const Button = styled.button`
+  font-size: 1rem;
+  padding: 0.25rem 1rem;
+  margin: 0 1rem;
+  background: white;
+`;
 
 class App extends PureComponent {
   render() {
     return <Fragment>
-        <Header text="Do którego domu będziesz należał?" color="primary" />
-        <img src="sample_img.jpg" />
+        <AppWrapper>
+          <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
+          <Button>ZACZNIJ QUIZ</Button>
+        </AppWrapper>
       </Fragment>;
   }
 }

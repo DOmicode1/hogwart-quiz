@@ -1,21 +1,25 @@
-var quizQuestions = [
+const quizQuestions  = [
   {
     question: "Z czego chciałbyś/chciałabyś słynąć",
       answers: [
         {
           type: "Gryffindor",
+          points: 40,
           content: "Odwaga"
         },
         {
           type: "Slytherin",
+          points: 10,
           content: "Spryt"
         },
         {
           type: "Ravenclaw",
+          points: 20,
           content: "Mądrość"
         },
         {
           type: "Hufflepuff",
+          points: 30,
           content: "Dobroć"
         },
       ]
