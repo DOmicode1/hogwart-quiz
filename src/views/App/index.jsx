@@ -48,26 +48,32 @@ class App extends PureComponent {
         Gryffindor: 0,
         Slytherin: 0,
         Hufflepuff: 0,
-        Ravenclaw:0
+        Ravenclaw: 0,
       },
-      result: ''
+      result: '',
     };
+
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
+
   componentWillMount() {
-    const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));
+    const shuffledAnswerOptions = quizQuestions.map(question =>
+      this.shuffleArray(question.answers),
+    );
 
     this.setState({
       question: quizQuestions[0].question,
-      answerOptions: shuffledAnswerOptions[0]
+      answerOptions: shuffledAnswerOptions[0],
     });
   }
+
   shuffleArray(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
@@ -79,14 +85,15 @@ class App extends PureComponent {
     }
 
     return array;
-  };
+  }
+
   setUserAnswer(answer) {
     const updatedAnswersCount = update(this.state.answersCount, {
-      [answer]: { $apply: (currentValue) => currentValue + 1 }
+      [answer]: { $apply: currentValue => currentValue + 1 },
     });
     this.setState({
       answersCount: updatedAnswersCount,
-      answer: answer
+      answer: answer,
     });
   }
 
@@ -95,30 +102,88 @@ class App extends PureComponent {
     if (this.state.questionId < quizQuestions.length) {
       setTimeout(() => this.setNextQuestion(), 300);
     } else {
-
+      setTimeout(() => this.setResults(this.getResults()), 300);
     }
   }
 
-  render()
-  {
-    // return <Fragment>
-    //     <AppWrapper>
-    //       <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
-    //       <Button>
-    //         ZACZNIJ QUIZ
-    //       </Button>
-    //     <Question content="What is your favourite food?" />
+  setNextQuestion() {
+    const counter = this.state.counter + 1;
+    const questionId = this.state.questionId + 1;
+    this.setState({
+      counter: counter,
+      questionId: questionId,
+      question: quizQuestions[counter].question,
+      answerOptions: quizQuestions[counter].answers,
+      answer: '',
+    });
+  }
 
-    //     </AppWrapper>
-    //   </Fragment>;
-    return <Fragment>
-      <AppWrapper>
+  getResults() {
+    const answersCount = this.state.answersCount;
+    const answersCountKeys = Object.keys(answersCount);
+    const answersCountValues = answersCountKeys.map(key => answersCount[key]);
+    const maxAnswerCount = Math.max.apply(null, answersCountValues);
 
-        <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
+    return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
+  }
+  setResults(result) {
+    if (result.length === 1) {
+      this.setState({ result: result[0] });
+    } else {
+      this.setState({ result: 'Undetermined' });
+    }
+  }
 
-        <Quiz answer={this.state.answer} answerOptions={this.state.answerOptions} questionId={this.state.questionId} question={this.state.question} questionTotal={quizQuestions.length} onAnswerSelected={this.handleAnswerSelected} />
-      </AppWrapper>
-    </Fragment>;
+  renderQuiz() {
+    return (
+      <Quiz
+        answer={this.state.answer}
+        answerOptions={this.state.answerOptions}
+        questionId={this.state.questionId}
+        question={this.state.question}
+        questionTotal={quizQuestions.length}
+        onAnswerSelected={this.handleAnswerSelected}
+      />
+    );
+  }
+
+  renderResult() {
+    return <Result quizResult={this.state.result} />;
+  }
+
+
+
+  componentDidMount() {
+    document.body.style.background = "brown";
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.result === "Gryffindor") {
+      const currentRoute = nextProps.location.pathname;
+      switch (currentRoute) {
+        case "\a": document.body.style.background = "blue";
+          break;
+        case "\b": document.body.style.background = "green";
+          break;
+        default: document.body.style.background = "red";
+
+      }
+    }
+  }
+
+
+
+  render() {
+
+    return (
+      <Fragment>
+        <AppWrapper>
+          <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
+
+          {this.state.result ? this.renderResult() : this.renderQuiz()}
+        </AppWrapper>
+      </Fragment>
+    );
   }
 }
 
