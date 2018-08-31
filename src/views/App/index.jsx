@@ -1,10 +1,18 @@
 import React, { PureComponent, Fragment } from 'react';
 import Header from 'components/Header';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import Home from './Home';
-import About from './About';
+// import Home from './home';
+// import About from './about';
+
+import quizQuestions from '../../components/Questions/quizQuestions';
+import Quiz from '../../components/Questions/quiz';
+import Result from '../../components/Questions/result';
+import Question from '../../components/Questions/question';
+
+
+
 
 
 const AppWrapper = styled.div`
@@ -26,22 +34,92 @@ const Button = styled.button`
 `;
 
 class App extends PureComponent {
-  render() {
-    return <Fragment>
-        <AppWrapper>
-          <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
-          <Router>
-            <div className="container">
-              <Button>
-                <Link to="/about">ZACZNIJ QUIZ</Link>
-              </Button>
-              <Route exact path="/" component={Home} />
-              <Route path="/about" component={About} />
-            </div>
-          </Router>
-        </AppWrapper>
-      </Fragment>;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      counter: 0,
+      questionId: 1,
+      question: '',
+      answerOptions: [],
+      answer: '',
+      answersCount: {
+        Gryffindor: 0,
+        Slytherin: 0,
+        Hufflepuff: 0,
+        Ravenclaw:0
+      },
+      result: ''
+    };
+    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+  }
+  componentWillMount() {
+    const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));
+
+    this.setState({
+      question: quizQuestions[0].question,
+      answerOptions: shuffledAnswerOptions[0]
+    });
+  }
+  shuffleArray(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  };
+  setUserAnswer(answer) {
+    const updatedAnswersCount = update(this.state.answersCount, {
+      [answer]: { $apply: (currentValue) => currentValue + 1 }
+    });
+    this.setState({
+      answersCount: updatedAnswersCount,
+      answer: answer
+    });
+  }
+
+  handleAnswerSelected(event) {
+    this.setUserAnswer(event.currentTarget.value);
+    if (this.state.questionId < quizQuestions.length) {
+      setTimeout(() => this.setNextQuestion(), 300);
+    } else {
+      // do nothing for now
+    }
+  }
+
+  render()
+  {
+    // return <Fragment>
+    //     <AppWrapper>
+    //       <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
+    //       <Button>
+    //         ZACZNIJ QUIZ
+    //       </Button>
+    //     <Question content="What is your favourite food?" />
+
+    //     </AppWrapper>
+    //   </Fragment>;
+    return <div className="App">
+        <div className="App-header">
+
+          <h2>React Quiz</h2>
+        </div>
+        <Quiz answer={this.state.answer} answerOptions={this.state.answerOptions} questionId={this.state.questionId} question={this.state.question} questionTotal={quizQuestions.length} onAnswerSelected={this.handleAnswerSelected} />
+      </div>;
   }
 }
 
 export default App;
+
+

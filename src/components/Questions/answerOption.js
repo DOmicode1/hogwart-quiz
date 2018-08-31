@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 
 function AnswerOption(props) {
   return (
@@ -15,21 +13,11 @@ function AnswerOption(props) {
         disabled={props.answer}
         onChange={props.onAnswerSelected}
       />
-
       <label className="radioCustomLabel" htmlFor={props.answerType}>
         {props.answerContent}
       </label>
-
     </li>
   );
 }
-
-AnswerOption.propTypes = {
-  answerType: PropTypes.string.isRequired,
-  answerContent: PropTypes.string.isRequired,
-  answer: PropTypes.string.isRequired,
-  OnAnswerSelected: PropTypes.string.isRequired,
-
-};
 
 export default AnswerOption;

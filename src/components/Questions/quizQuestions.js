@@ -1,5 +1,4 @@
-const quizQuestions  = () => {
-  return ([
+const quizQuestions  = [
   {
     question: "Z czego chciałbyś/chciałabyś słynąć",
       answers: [
@@ -319,7 +318,5 @@ const quizQuestions  = () => {
       },
     ]
   }
-])
-};
-
+]
 export default quizQuestions;
