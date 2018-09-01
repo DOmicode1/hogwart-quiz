@@ -10,11 +10,8 @@ import styled from 'styled-components';
 import quizQuestions from '../../components/Questions/quizQuestions';
 import Quiz from '../../components/Questions/quiz';
 import Result from '../../components/Questions/result';
-import Question from '../../components/Questions/question';
-
-
-
-
+// import Patronus from '../../components/Patronus/Patronus';
+// import Question from '../../components/Questions/question';
 
 const AppWrapper = styled.div`
   background-color: var(--brown);
@@ -151,30 +148,27 @@ class App extends PureComponent {
     return <Result quizResult={this.state.result} />;
   }
 
-
-
   componentDidMount() {
-    document.body.style.background = "brown";
+    document.body.style.background = 'brown';
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.result === "Gryffindor") {
+    if (this.props.result === 'Gryffindor') {
       const currentRoute = nextProps.location.pathname;
       switch (currentRoute) {
-        case "\a": document.body.style.background = "blue";
+        case 'a':
+          document.body.style.background = 'blue';
           break;
-        case "\b": document.body.style.background = "green";
+        case '\b':
+          document.body.style.background = 'green';
           break;
-        default: document.body.style.background = "red";
-
+        default:
+          document.body.style.background = 'red';
       }
     }
   }
 
-
-
   render() {
-
     return (
       <Fragment>
         <AppWrapper>
@@ -188,5 +182,3 @@ class App extends PureComponent {
 }
 
 export default App;
-
-
