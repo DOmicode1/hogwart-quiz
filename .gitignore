@@ -24,3 +24,5 @@ yarn-error.log*
 .idea
 react-ui-framework
 /public
+
+package-lock.json
