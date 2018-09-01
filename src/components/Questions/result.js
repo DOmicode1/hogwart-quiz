@@ -9,10 +9,8 @@ function Result(props) {
     ReactDOM.render(<Patronus quizResult={props.quizResult} />, document.getElementById('root'));
   }
   return (
-
     <div className="result">
-      Twój dom to: <strong>{props.quizResult}</strong>!
-      </div>
+      Twój dom to: <strong>{props.quizResult}</strong>!<br />
       <button type="button" id="losujPatronusa" onClick={losujPatronusa}>
         Teraz wylosuj swojego Patronusa
       </button>
