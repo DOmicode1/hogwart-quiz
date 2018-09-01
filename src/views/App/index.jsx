@@ -8,6 +8,11 @@ import quizQuestions from '../../components/Questions/quizQuestions';
 import Quiz from '../../components/Questions/quiz';
 import Result from '../../components/Questions/result';
 
+// import Patronus from '../../components/Patronus/Patronus';
+// import Question from '../../components/Questions/question';
+
+
+
 
 
 
@@ -144,8 +149,25 @@ class App extends PureComponent {
   }
 
 
-  render() {
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.result === 'Gryffindor') {
+      const currentRoute = nextProps.location.pathname;
+      switch (currentRoute) {
+        case 'a':
+          document.body.style.background = 'blue';
+          break;
+        case '\b':
+          document.body.style.background = 'green';
+          break;
+        default:
+          document.body.style.background = 'red';
+      }
+    }
+  }
+
+
+  render() {
     return (
       <Fragment>
         <AppWrapper>
@@ -159,5 +181,3 @@ class App extends PureComponent {
 }
 
 export default App;
-
-
