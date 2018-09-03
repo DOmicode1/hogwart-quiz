@@ -2,13 +2,63 @@
 @import "variables.scss";
 
 body {
-  font-family: var(--mainFont);
-  font-size: var(--font-md);
+  font-family: Jim Nightshade, cursive;
+  font-size: 20px;
   line-height: var(--font-md-lh);
   font-weight: var(--regular);
   color: var(--text1);
-  background-color: var(--background);
+  background-image: url('./background3.jpg') !important;
+  background-size:cover;
+
+  p{
+    font-family: Jim Nightshade, cursive;
+    font-size: 90px;
+    color: white;
+    margin-bottom: 70px;
+    padding: 20px;
+  }
+ #wrapper {
+    background-color: rgba(12, 10, 10, 0.795);
+    padding: 30px;
+    border: 2px solid #e5eace;
+    border-radius: 10px;
+  }
+  .questionCount{
+    font-family: Quintessential, cursive;
+    color: white;
+    font-size: 17px;
+    margin: 5px;
+    padding: 5px;
+  }
+ .question{
+    font-family: Quintessential, cursive;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+  }
+  .answerOption{
+    padding:7px;
+    justify-content: flex-start;
+  }
+  .radioCustomLabel{
+    font-size: 20px;
+    font-family: M PLUS Rounded 1c, sans-serif;
+    padding:5px;
+    margin:5px;
+  }
+  .radioCustombutton{
+    padding:5px;
+    margin:5px;
+
+  }
+  .result{
+    color: white;
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
 }
+
 
 h1 {
   font-family: var(--headerFont);
@@ -19,8 +69,8 @@ h1 {
 }
 
 h2 {
-  font-family: var(--headerFont);
-  font-size: var(--font-xl);
+  font-family: Quintessential, cursive;
+  font-size: 30px;
   line-height: var(--font-xl-lh);
   font-weight: var(--bold);
   color: var(--text1);

@@ -11,15 +11,8 @@ import Result from '../../components/Questions/result';
 // import Patronus from '../../components/Patronus/Patronus';
 // import Question from '../../components/Questions/question';
 
-
-
-
-
-
-
-
 const AppWrapper = styled.div`
-  background-color: var(--brown);
+
   height: 100vh;
   padding: 0;
   display: flex;
@@ -148,32 +141,16 @@ class App extends PureComponent {
     return <Result quizResult={this.state.result} />;
   }
 
-
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.result === 'Gryffindor') {
-      const currentRoute = nextProps.location.pathname;
-      switch (currentRoute) {
-        case 'a':
-          document.body.style.background = 'blue';
-          break;
-        case '\b':
-          document.body.style.background = 'green';
-          break;
-        default:
-          document.body.style.background = 'red';
-      }
-    }
-  }
-
-
   render() {
     return (
       <Fragment>
         <AppWrapper>
-          <Header text="Dowiedz się, do którego domu w Howgardzie należysz!" color="" />
+          <p>HOGWART-QUIZ</p>
+          <div id="wrapper">
+            <Header text="Dowiedz się, do którego domu w Hogwardzie należysz!" color="" />
 
-          {this.state.result ? this.renderResult() : this.renderQuiz()}
+            {this.state.result ? this.renderResult() : this.renderQuiz()}
+          </div>
         </AppWrapper>
       </Fragment>
     );
