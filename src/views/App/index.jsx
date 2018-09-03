@@ -3,7 +3,6 @@ import update from 'react-addons-update'; // ES6
 import Header from 'components/Header';
 import styled from 'styled-components';
 
-
 import quizQuestions from '../../components/Questions/quizQuestions';
 import Quiz from '../../components/Questions/quiz';
 import Result from '../../components/Questions/result';
@@ -12,7 +11,6 @@ import Result from '../../components/Questions/result';
 // import Question from '../../components/Questions/question';
 
 const AppWrapper = styled.div`
-
   height: 100vh;
   padding: 0;
   display: flex;
@@ -21,8 +19,6 @@ const AppWrapper = styled.div`
   align-items: center;
   text-align: center;
 `;
-
-
 
 class App extends PureComponent {
   constructor(props) {
