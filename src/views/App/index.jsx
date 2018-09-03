@@ -120,7 +120,7 @@ class App extends PureComponent {
     if (result.length === 1) {
       this.setState({ result: result[0] });
     } else {
-      this.setState({ result: 'Undetermined' });
+      this.setState({ result: 'Twoje wybory były niejednoznaczne, zrób test jeszcze raz!' });
     }
   }
 
